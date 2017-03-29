@@ -1,14 +1,19 @@
 version: '2'
 services:
   nginx-proxy:
-    image: jwilder/nginx-proxy
+    build:
+      context: ./
     container_name: nginx-proxy
+    restart: always
+    networks:
+      - web
     ports:
       - "80:80"
+      - 443:443
     volumes:
+      - ./conf:/etc/nginx/conf.d
       - /var/run/docker.sock:/tmp/docker.sock:ro
-
-  whoami:
-    image: jwilder/whoami
-    environment:
-      - VIRTUAL_HOST=whoami.local
+networks:
+  web:
+    external:
+      name: web
