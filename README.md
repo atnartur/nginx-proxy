@@ -26,6 +26,7 @@ networks:
   web:
     external:
       name: web
+  project_network:
 ```
 
 
