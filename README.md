@@ -10,7 +10,7 @@ nginx, следящий за другими контейнерами и проб
 
 ## docker-compose файл проекта
 
-```
+```yml
 services:
   web:
     image: nginx:latest
@@ -21,6 +21,11 @@ services:
       - project_network
     environment:
       VIRTUAL_HOST: example.com # указываем хост, на который должен проброситься данный сервис 
+
+networks:
+  web:
+    external:
+      name: web
 ```
 
 
